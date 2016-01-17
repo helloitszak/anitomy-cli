@@ -1,3 +1,6 @@
 [submodule "external/anitomy"]
 	path = external/anitomy
 	url = https://github.com/erengy/anitomy.git
+[submodule "external/json"]
+	path = external/json
+	url = https://github.com/nlohmann/json.git
