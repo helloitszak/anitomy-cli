@@ -21,13 +21,32 @@ std::string get_str_element(anitomy::Elements eles, anitomy::ElementCategory cat
   return ws2s(eles.get(cat));
 }
 
-int main() {
-  anitomy::Anitomy anitomy;
+void printHelp()
+{
+  std::cout <<
+    "anitomy-cli: An interface to the anitomy anime filename parser library\n"
+    "Usage:\n"
+    "\tanitomy-cli --stdin       : Parses from stdin\n"
+    "\tanitomy-cli --name [name] : Parses name"	<< std::endl;
+}
 
-  std::string line;
-  std::getline(std::cin, line);
+int main(int argc, char** argv) {
+  std::wstring input;
+  if (argc < 2) {
+    printHelp();
+    return 1;
+  } else if (strcmp(argv[1], "--stdin") == 0) {
+    std::getline(std::wcin, input);
+  } else if (strcmp(argv[1], "--name") == 0 && argc == 3) {
+    input = std::wstring(s2ws(argv[2]));
+  } else {
+    printHelp();
+    return 1;
+  }
   
-  anitomy.Parse(s2ws(line));
+  anitomy::Anitomy anitomy;
+  
+  anitomy.Parse(input);
   
   auto& elements = anitomy.elements();
   json output = {
