@@ -1,2 +1,3 @@
-# anitomy-cli
-Command Line interface to anitomy
+# Anitomy-cli
+
+A command line interface to the wonderful anitomy anime title parser.
